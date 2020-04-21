@@ -43,16 +43,27 @@ jobs:
           arduino-cli core install ${{ matrix.arduino-platform }}
       # Finally, we compile the sketch, using the FQBN that was set
       # in the build matrix.
-      - name: Compile Sketch
+      - name: Compile Sketch 1
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} src/1OnboardLED/1turningon
+      - name: Compile Sketch 2
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} src/1OnboardLED/2blinking
+      - name: Compile Sketch 3
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} src/1OnboardLED/3blinkingdifferentrates
+      - name: Compile Sketch 4
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} src/2BreadboardLED/1turningon
+      - name: Compile Sketch 5
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} src/2BreadboardLED/2blinking
+      - name: Compile Sketch 6
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} src/2BreadboardLED/3trafficlights
+      - name: Compile Sketch 7
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} src/2BreadboardLED/4forloopblinking
+      - name: Compile Sketch 8
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} src/2BreadboardLED/4loopblinking
+      - name: Compile Sketch 9
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} src/2BreadboardLED/5printing_over_serial_blinking_led
+      - name: Compile Sketch 10
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} src/2BreadboardLED/6getting_data_from_serial_blinking_led
+      - name: Compile Sketch 11
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} src/2BreadboardLED/7analog_writing_voltages_gradually_light_led
+      - name: Compile Sketch 12
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} src/2BreadboardLED/8flowing_led

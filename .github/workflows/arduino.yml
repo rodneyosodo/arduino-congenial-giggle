@@ -23,7 +23,7 @@ jobs:
             fqbn: "arduino:samd:nano_33_iot"
           - arduino-platform: "arduino:avr"
             fqbn: "arduino:avr:uno"
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     # This is the list of steps this job will run.
     steps:

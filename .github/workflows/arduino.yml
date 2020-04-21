@@ -36,9 +36,6 @@ jobs:
       - name: Setup Arduino CLI
         uses: arduino/setup-arduino-cli@v1.0.0
       
-      - name: Compiles examples
-        uses: arduino/actions/libraries/compile-examples@master
-      
       - name: Spell check
         uses: arduino/actions/libraries/spell-check@master
 

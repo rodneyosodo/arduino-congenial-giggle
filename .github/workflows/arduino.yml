@@ -35,9 +35,6 @@ jobs:
       # configure the Arduino CLI on the system.
       - name: Setup Arduino CLI
         uses: arduino/setup-arduino-cli@v1.0.0
-      
-      - name: Spell check
-        uses: arduino/actions/libraries/spell-check@master
 
       # We then install the platform, which one will be determined
       - name: Install platform

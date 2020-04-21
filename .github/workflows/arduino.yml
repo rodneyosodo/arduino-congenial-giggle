@@ -1,20 +1,10 @@
-# This is the name of the workflow, visible on GitHub UI.
 name: test
 
-# Here we tell GitHub to run the workflow when a commit
-# is pushed or a Pull Request is opened.
 on: [push, pull_request]
 
-# This is the list of jobs that will be run concurrently.
-# Since we use a build matrix, the actual number of jobs
-# started depends on how many configurations the matrix
-# will produce.
 jobs:
-  # This is the name of the job - can be whatever.
   test-matrix:
 
-    # Here we tell GitHub that the jobs must be determined
-    # dynamically depending on a matrix configuration.
     strategy:
       matrix:
         # The matrix will produce one job for each configuration
@@ -32,11 +22,10 @@ jobs:
           - arduino-platform: "arduino:samd"
             fqbn: "arduino:samd:nano_33_iot"
           - arduino-platform: "arduino:avr"
-            fqbn: "arduino:avr:unowifi"
-
-    # This is the platform GitHub will use to run our workflow, we
-    # pick Windows for no particular reason.
-    runs-on: windows-latest
+            fqbn: "arduino:avr:uno"
+    runs-on:
+      - ubuntu-latest
+      - windows-latest
 
     # This is the list of steps this job will run.
     steps:
@@ -48,9 +37,14 @@ jobs:
       # configure the Arduino CLI on the system.
       - name: Setup Arduino CLI
         uses: arduino/setup-arduino-cli@v1.0.0
+      
+      - name: Compiles examples
+        uses: arduino/actions/libraries/compile-examples@master
+      
+      - name: Spell check
+        uses: arduino/actions/libraries/spell-check@master
 
       # We then install the platform, which one will be determined
-      # dynamically by the build matrix.
       - name: Install platform
         run: |
           arduino-cli core update-index
@@ -58,4 +52,5 @@ jobs:
       # Finally, we compile the sketch, using the FQBN that was set
       # in the build matrix.
       - name: Compile Sketch
-        run: arduino-cli compile --fqbn ${{ matrix.fqbn }} ./src/1OnboardLED/1turningon/
+        run: arduino-cli compile --fqbn ${{ matrix.fqbn }} '**.ino'
+  

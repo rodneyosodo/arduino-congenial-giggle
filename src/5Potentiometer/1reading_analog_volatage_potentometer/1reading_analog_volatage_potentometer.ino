@@ -1,6 +1,6 @@
 // This turns on the onboard LED for 1s and off for 0.5s repeatedly
 
-int potentiometerPin = 8;
+int potentiometerPin = A5;
 int readValue;
 float voltageValue;
 
